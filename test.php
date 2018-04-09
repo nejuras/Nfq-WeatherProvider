@@ -16,7 +16,7 @@ $location = new Location($lat, $lon);
 $YahooWeatherProvider = new YahooWeatherProvider();
 
 $DelegateWeatherProvider = new DelegateWeatherProvider(array($YahooWeatherProvider, $OpenWeatherMap));
-echo $DelegateWeatherProvider->fetch($location)->name;
+echo $DelegateWeatherProvider->fetch($location)->providerName;
 echo "<br>";
 echo $DelegateWeatherProvider->fetch($location)->temperature . " &#8451;";
 
