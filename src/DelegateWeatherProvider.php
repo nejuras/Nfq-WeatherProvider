@@ -18,10 +18,12 @@ class DelegateWeatherProvider
      * @throws WeatherProviderException
      */
     public function fetch(Location $location) : Weather {
+
+
         foreach ($this->providers as $provider) {
-            $weather = $provider->fetch($location);
-            if ($weather) {
-                return $weather;
+            try {
+                return $provider->fetch($location);
+            } catch (WeatherProviderException $e) {
             }
         }
 

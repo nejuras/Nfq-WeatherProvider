@@ -2,6 +2,7 @@
 
 namespace Nfq\Weather;
 
+
 class OpenWeatherMapProvider implements WeatherProviderInterface
 {
     /**
@@ -24,6 +25,11 @@ class OpenWeatherMapProvider implements WeatherProviderInterface
         $url = "http://api.openweathermap.org/data/2.5/weather?lat={$location->lat}&lon={$location->lon}&appid=" . $this->appid;
         $json = file_get_contents($url);
         $data = json_decode($json);
+        if ( ( json_last_error() ) || ( !$this->appid ) ) {
+
+            throw new WeatherProviderException('klaida');
+        }
+
         $temperature = $data->main->temp;
         $temperature_type = 'K';
         $providerName = 'Open Weather Map';

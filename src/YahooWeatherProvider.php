@@ -14,11 +14,12 @@ class YahooWeatherProvider implements WeatherProviderInterface
         $q = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) 
           where text="Vilnius, lt")';
         $url ="https://query.yahooapis.com/v1/public/yql?q=" . urlencode($q) . "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-        $ret = file_get_contents($url);
-        $data = json_decode($ret);
+        $url_into_string= file_get_contents($url);
+        $data = json_decode($url_into_string);
 
-        if(!$data->query->results){
-            throw new WeatherProviderException();
+        if (json_last_error()) {
+
+            throw new WeatherProviderException('klaida');
         }
 
         $temperature = $data->query->results->channel->item->condition->temp;

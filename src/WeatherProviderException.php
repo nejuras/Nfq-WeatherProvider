@@ -2,6 +2,6 @@
 
 namespace Nfq\Weather;
 
-class WeatherProviderException extends \Exception
+class WeatherProviderException extends Exception
 {
 }

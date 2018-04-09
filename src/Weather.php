@@ -4,18 +4,18 @@ namespace Nfq\Weather;
 
 class Weather
 {
-    public $name;
+    public $providerName;
     public $temperature;
     protected $type;
 
     /**
-     * @param $name
+     * @param $providerName
      * @param $temperature
      * @param $type
      */
-    public function __construct($name, $temperature, $type)
+    public function __construct($providerName, $temperature, $type)
     {
-        $this->name = $name;
+        $this->providerName = $providerName;
         $this->type = $type;
         $this->temperature = $this->providerTemperatureType($temperature);
     }
